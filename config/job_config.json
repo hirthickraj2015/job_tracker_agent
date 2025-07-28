@@ -1,0 +1,60 @@
+
+{
+  "search_parameters": {
+    "keywords": [
+      "python developer",
+      "software engineer", 
+      "data scientist",
+      "backend developer",
+      "full stack developer",
+      "web developer"
+    ],
+    "location": "Remote",
+    "experience_level": ["entry", "mid", "senior"],
+    "job_type": ["full-time", "contract"],
+    "exclude_keywords": ["senior", "lead", "manager", "director", "principal"]
+  },
+  "portals": {
+    "indeed": {
+      "enabled": true,
+      "base_url": "https://indeed.com/jobs",
+      "selectors": {
+        "job_card": "[data-jk]",
+        "title": "h2 a span",
+        "company": "[data-testid='company-name']",
+        "link": "h2 a",
+        "location": "[data-testid='job-location']"
+      }
+    },
+    "linkedin": {
+      "enabled": true,
+      "base_url": "https://linkedin.com/jobs/search",
+      "selectors": {
+        "job_card": ".job-search-card",
+        "title": ".base-search-card__title",
+        "company": ".base-search-card__subtitle",
+        "link": ".base-card__full-link",
+        "location": ".job-search-card__location"
+      }
+    }
+  },
+  "email_config": {
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "email": "your_email@gmail.com",
+    "password": "your_app_password",
+    "imap_server": "imap.gmail.com",
+    "imap_port": 993
+  },
+  "filters": {
+    "min_salary": 0,
+    "max_days_old": 7,
+    "required_skills": [],
+    "preferred_companies": [],
+    "excluded_companies": ["staffing agency names"]
+  },
+  "excel_file": "job_applications.xlsx",
+  "schedule_time": "09:00",
+  "max_jobs_per_run": 20,
+  "delay_between_requests": 2
+}
