@@ -7,7 +7,6 @@ def setup_logging(log_dir='logs'):
     """Setup logging configuration"""
     # Create logs directory if it doesn't exist
     os.makedirs(log_dir, exist_ok=True)
-    
     # Create log filename with current date
     log_filename = os.path.join(log_dir, f'job_tracker_{datetime.now().strftime("%Y%m%d")}.log')
     

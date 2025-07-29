@@ -9,4 +9,6 @@ services:
       - "8888:8888"
     tty: true
     stdin_open: true
+    volumes:
+      - .:/app
 

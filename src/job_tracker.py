@@ -17,7 +17,6 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from typing import List, Dict, Any
-
 # Add the project root to the path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -28,16 +27,17 @@ class JobTrackingAgent:
     def __init__(self, config_file='config/job_config.json'):
         self.project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.config_path = os.path.join(self.project_root, config_file)
-        self.config = self.load_config()
-        self.excel_file = os.path.join(self.project_root, 'data', self.config.get('excel_file', 'job_applications.xlsx'))
-        
+
         # Setup logging
         log_dir = os.path.join(self.project_root, 'logs')
         setup_logging(log_dir)
         self.logger = logging.getLogger(__name__)
-        
         # Create necessary directories
         create_directories(self.project_root)
+        
+        # setup from config
+        self.config = self.load_config()
+        self.excel_file = os.path.join(self.project_root, 'data', self.config.get('excel_file', 'job_applications.xlsx'))
         
         # Setup driver
         self.setup_driver()
@@ -442,6 +442,7 @@ Jobs by Portal:
 def main():
     """Main entry point"""
     try:
+
         agent = JobTrackingAgent()
         
         # Check command line arguments

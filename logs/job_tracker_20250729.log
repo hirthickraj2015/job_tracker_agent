@@ -1,0 +1,5 @@
+2025-07-29 17:32:16,763 - __main__ - INFO - Configuration loaded successfully
+2025-07-29 17:32:16,764 - WDM - INFO - ====== WebDriver manager ======
+2025-07-29 17:32:17,034 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-29 17:32:17,034 - __main__ - ERROR - Error setting up WebDriver: 'NoneType' object has no attribute 'split'
+2025-07-29 17:32:17,035 - __main__ - ERROR - Main error: 'NoneType' object has no attribute 'split'
