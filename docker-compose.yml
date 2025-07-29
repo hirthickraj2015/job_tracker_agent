@@ -1,0 +1,12 @@
+services:
+  job-tracker-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    platform: linux/amd64
+    container_name: job-tracker-dev
+    ports:
+      - "8888:8888"
+    tty: true
+    stdin_open: true
+
