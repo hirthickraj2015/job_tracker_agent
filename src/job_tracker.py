@@ -114,8 +114,14 @@ class JobTrackingAgent:
             chrome_options.add_argument("--window-size=1920,1080")
             chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
             
-            # Use WebDriver Manager to automatically download and manage ChromeDriver
-            service = Service(ChromeDriverManager().install())
+            # Use WebDriver Manager to automatically download and manage ChromeDriver or uses predownloaded one
+            try:
+                CHROMEDRIVER_PATH = "/opt/chromedriver/chromedriver"
+                service = Service(CHROMEDRIVER_PATH)
+            except:
+                print("Chromedriver not found in opt, defaulting to download")
+                service = Service(ChromeDriverManager().install())
+
             self.driver = webdriver.Chrome(service=service, options=chrome_options)
             self.logger.info("WebDriver setup successful")
             

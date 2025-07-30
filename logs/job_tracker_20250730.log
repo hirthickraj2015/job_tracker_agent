@@ -12,3 +12,47 @@
 2025-07-30 11:35:56,745 - WDM - INFO - Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/138.0.7204.183]
 2025-07-30 11:35:56,751 - __main__ - ERROR - Error setting up WebDriver: [Errno 8] Exec format error: '/root/.wdm/drivers/chromedriver/linux64/138.0.7204.183/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver'
 2025-07-30 11:35:56,751 - __main__ - ERROR - Main error: [Errno 8] Exec format error: '/root/.wdm/drivers/chromedriver/linux64/138.0.7204.183/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver'
+2025-07-30 11:46:28,487 - __main__ - INFO - Configuration loaded successfully
+2025-07-30 11:46:32,338 - __main__ - INFO - WebDriver setup successful
+2025-07-30 11:46:32,339 - __main__ - INFO - ==================================================
+2025-07-30 11:46:32,340 - __main__ - INFO - Starting daily job check...
+2025-07-30 11:46:32,340 - __main__ - INFO - Searching for: python developer
+2025-07-30 11:46:32,340 - __main__ - INFO - Scraping Indeed: https://indeed.com/jobs?q=python+developer&l=Remote
+2025-07-30 11:46:37,814 - __main__ - INFO - Found 0 job cards on Indeed
+2025-07-30 11:46:39,824 - __main__ - INFO - Scraping LinkedIn: https://linkedin.com/jobs/search/?keywords=python%20developer&location=Remote
+2025-07-30 11:46:48,743 - __main__ - INFO - Found 60 job cards on LinkedIn
+2025-07-30 11:46:51,521 - __main__ - INFO - Searching for: software engineer
+2025-07-30 11:46:51,522 - __main__ - INFO - Scraping Indeed: https://indeed.com/jobs?q=software+engineer&l=Remote
+2025-07-30 11:46:56,720 - __main__ - INFO - Found 0 job cards on Indeed
+2025-07-30 11:46:58,727 - __main__ - INFO - Scraping LinkedIn: https://linkedin.com/jobs/search/?keywords=software%20engineer&location=Remote
+2025-07-30 11:47:07,478 - __main__ - INFO - Found 60 job cards on LinkedIn
+2025-07-30 11:47:10,254 - __main__ - INFO - Searching for: data scientist
+2025-07-30 11:47:10,255 - __main__ - INFO - Scraping Indeed: https://indeed.com/jobs?q=data+scientist&l=Remote
+2025-07-30 11:47:15,135 - __main__ - INFO - Found 0 job cards on Indeed
+2025-07-30 11:47:17,139 - __main__ - INFO - Scraping LinkedIn: https://linkedin.com/jobs/search/?keywords=data%20scientist&location=Remote
+2025-07-30 11:47:26,304 - __main__ - INFO - Found 60 job cards on LinkedIn
+2025-07-30 11:47:29,052 - __main__ - INFO - Searching for: backend developer
+2025-07-30 11:47:29,054 - __main__ - INFO - Scraping Indeed: https://indeed.com/jobs?q=backend+developer&l=Remote
+2025-07-30 11:47:34,214 - __main__ - INFO - Found 0 job cards on Indeed
+2025-07-30 11:47:36,235 - __main__ - INFO - Scraping LinkedIn: https://linkedin.com/jobs/search/?keywords=backend%20developer&location=Remote
+2025-07-30 11:47:44,957 - __main__ - INFO - Found 60 job cards on LinkedIn
+2025-07-30 11:47:47,698 - __main__ - INFO - Searching for: full stack developer
+2025-07-30 11:47:47,699 - __main__ - INFO - Scraping Indeed: https://indeed.com/jobs?q=full+stack+developer&l=Remote
+2025-07-30 11:47:52,638 - __main__ - INFO - Found 0 job cards on Indeed
+2025-07-30 11:47:54,647 - __main__ - INFO - Scraping LinkedIn: https://linkedin.com/jobs/search/?keywords=full%20stack%20developer&location=Remote
+2025-07-30 11:48:03,555 - __main__ - INFO - Found 60 job cards on LinkedIn
+2025-07-30 11:48:06,299 - __main__ - INFO - Searching for: web developer
+2025-07-30 11:48:06,300 - __main__ - INFO - Scraping Indeed: https://indeed.com/jobs?q=web+developer&l=Remote
+2025-07-30 11:48:11,298 - __main__ - INFO - Found 0 job cards on Indeed
+2025-07-30 11:48:13,302 - __main__ - INFO - Scraping LinkedIn: https://linkedin.com/jobs/search/?keywords=web%20developer&location=Remote
+2025-07-30 11:48:22,313 - __main__ - INFO - Found 60 job cards on LinkedIn
+2025-07-30 11:48:25,131 - __main__ - INFO - Filtered 120 jobs down to 14
+2025-07-30 11:48:25,132 - __main__ - INFO - Found 10 unique new jobs
+2025-07-30 11:48:25,256 - __main__ - INFO - Created new Excel file structure
+2025-07-30 11:48:25,774 - __main__ - INFO - Added 10 new jobs to /app/data/job_applications.xlsx
+2025-07-30 11:48:25,775 - src.email_tracker - WARNING - Email not configured
+2025-07-30 11:48:25,775 - __main__ - INFO - Checked recruiter responses, found 0 new responses
+2025-07-30 11:48:25,776 - __main__ - INFO - Daily job check completed. Found 10 new jobs in 113.44 seconds
+2025-07-30 11:48:25,776 - __main__ - WARNING - Email not configured, skipping notification
+2025-07-30 11:48:25,776 - __main__ - INFO - ==================================================
+2025-07-30 11:48:26,993 - __main__ - INFO - WebDriver closed
