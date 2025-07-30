@@ -1,0 +1,14 @@
+2025-07-30 11:35:52,825 - __main__ - INFO - Configuration loaded successfully
+2025-07-30 11:35:52,826 - WDM - INFO - ====== WebDriver manager ======
+2025-07-30 11:35:53,183 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-30 11:35:53,505 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-30 11:35:53,611 - WDM - INFO - There is no [linux64] chromedriver "138.0.7204.183" for browser google-chrome "138.0.7204" in cache
+2025-07-30 11:35:53,612 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-30 11:35:53,875 - WDM - INFO - WebDriver version 138.0.7204.183 selected
+2025-07-30 11:35:53,878 - WDM - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/138.0.7204.183/linux64/chromedriver-linux64.zip
+2025-07-30 11:35:53,878 - WDM - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/138.0.7204.183/linux64/chromedriver-linux64.zip
+2025-07-30 11:35:54,038 - WDM - INFO - Driver downloading response is 200
+2025-07-30 11:35:56,468 - WDM - INFO - Get LATEST chromedriver version for google-chrome
+2025-07-30 11:35:56,745 - WDM - INFO - Driver has been saved in cache [/root/.wdm/drivers/chromedriver/linux64/138.0.7204.183]
+2025-07-30 11:35:56,751 - __main__ - ERROR - Error setting up WebDriver: [Errno 8] Exec format error: '/root/.wdm/drivers/chromedriver/linux64/138.0.7204.183/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver'
+2025-07-30 11:35:56,751 - __main__ - ERROR - Main error: [Errno 8] Exec format error: '/root/.wdm/drivers/chromedriver/linux64/138.0.7204.183/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver'
