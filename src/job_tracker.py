@@ -205,21 +205,23 @@ class JobTrackingAgent:
             
             job_cards = self.driver.find_elements(By.CSS_SELECTOR, '.job-search-card')
             self.logger.info(f"Found {len(job_cards)} job cards on LinkedIn")
-            
+
             for i, card in enumerate(job_cards[:self.config.get('max_jobs_per_run', 20)]):
                 try:
                     title_elem = card.find_element(By.CSS_SELECTOR, '.base-search-card__title')
                     company_elem = card.find_element(By.CSS_SELECTOR, '.base-search-card__subtitle')
                     link_elem = card.find_element(By.CSS_SELECTOR, '.base-card__full-link')
                     
+                    # so every card here is a live pointer to an element in DOM managed by selenium, some text will not be loaded on time when .text is called and therefore get_attribute must be called which ensures text is present when needed
                     job = {
-                        'title': title_elem.text.strip(),
-                        'company': company_elem.text.strip(),
+                        'title': title_elem.text.strip() or title_elem.get_attribute('innerText').strip(),
+                        'company': company_elem.text.strip() or company_elem.get_attribute('innerText').strip(),
                         'location': location,
                         'link': link_elem.get_attribute('href'),
                         'portal': 'LinkedIn',
                         'date_found': datetime.now().strftime('%Y-%m-%d')
                     }
+
                     jobs.append(job)
                     
                 except Exception as e:
@@ -242,11 +244,12 @@ class JobTrackingAgent:
             
             # Check if title contains any exclude keywords
             if any(keyword.lower() in title_lower for keyword in exclude_keywords):
-                continue
-                
-            # Check if title contains desired keywords
-            if any(keyword.lower() in title_lower for keyword in search_params['keywords']):
+                print(f"{title_lower} excluded since it contains excluded keywords")
+            else:
                 filtered_jobs.append(job)
+            # # Check if title contains desired keywords
+            # if any(keyword.lower() in title_lower for keyword in search_params['keywords']):
+            #     filtered_jobs.append(job)
         
         self.logger.info(f"Filtered {len(jobs)} jobs down to {len(filtered_jobs)}")
         return filtered_jobs
@@ -279,7 +282,7 @@ class JobTrackingAgent:
         unique_jobs = []
         seen = set()
         for job in filtered_jobs:
-            key = (job['title'].lower(), job['company'].lower())
+            key = (job['title'], job['company'])
             if key not in seen:
                 seen.add(key)
                 unique_jobs.append(job)
@@ -384,14 +387,13 @@ class JobTrackingAgent:
             duration = (end_time - start_time).total_seconds()
             
             message = f"""Job Tracker Daily Summary
-            
-Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-Duration: {duration:.2f} seconds
-New Jobs Found: {len(new_jobs)}
-Excel File: {self.excel_file}
+                Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+                Duration: {duration:.2f} seconds
+                New Jobs Found: {len(new_jobs)}
+                Excel File: {self.excel_file}
 
-Jobs by Portal:
-"""
+                Jobs by Portal:
+                """
             
             portal_counts = {}
             for job in new_jobs:
