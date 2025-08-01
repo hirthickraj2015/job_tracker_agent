@@ -217,9 +217,12 @@ class JobTrackingAgent:
                     link_elem = card.find_element(By.CSS_SELECTOR, '.base-card__full-link')
 
                     # so every card here is a live pointer to an element in DOM managed by selenium, some text will not be loaded on time when .text is called and therefore get_attribute must be called which ensures text is present when needed
+                    title_innertext = title_elem.get_attribute('innerText') or ''
+                    company_innertext = company_elem.get_attribute('innerText') or ''
+                    
                     job = {
-                        'title': title_elem.text.strip() or title_elem.get_attribute('innerText').strip(),
-                        'company': company_elem.text.strip() or company_elem.get_attribute('innerText').strip(),
+                        'title': title_elem.text.strip() or title_innertext.strip(),
+                        'company': company_elem.text.strip() or company_innertext.strip(),
                         'location': location,
                         'link': link_elem.get_attribute('href'),
                         'portal': 'LinkedIn',
@@ -507,10 +510,9 @@ class JobTrackingAgent:
 
 def main():
     """Main entry point"""
+    agent = None # Initialize to None for cleanup in finally block
     try:
-
         agent = JobTrackingAgent()
-
         # Check command line arguments
         if len(sys.argv) > 1:
             if sys.argv[1] == '--run-once':
@@ -536,7 +538,7 @@ def main():
         print(f"❌ Error: {e}")
         logging.getLogger(__name__).error(f"Main error: {e}")
     finally:
-        if 'agent' in locals():
+        if agent:
             agent.cleanup()
 
 if __name__ == "__main__":
