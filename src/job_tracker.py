@@ -13,6 +13,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support import expected_conditions as EC
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -116,7 +117,7 @@ class JobTrackingAgent:
             
             # Use WebDriver Manager to automatically download and manage ChromeDriver or uses predownloaded one
             try:
-                CHROMEDRIVER_PATH = "/opt/chromedriver/chromedriver"
+                CHROMEDRIVER_PATH = "./src/chromedriver"
                 service = Service(CHROMEDRIVER_PATH)
             except:
                 print("Chromedriver not found in opt, defaulting to download")
@@ -203,9 +204,14 @@ class JobTrackingAgent:
             self.driver.get(search_url)
             time.sleep(5)
             
+            self.scroll_till_bottom()
+            
             job_cards = self.driver.find_elements(By.CSS_SELECTOR, '.job-search-card')
             self.logger.info(f"Found {len(job_cards)} job cards on LinkedIn")
-
+            
+            with open('single_element.html', 'w') as f:
+                f.write(self.driver.page_source)
+                
             for i, card in enumerate(job_cards[:self.config.get('max_jobs_per_run', 20)]):
                 try:
                     title_elem = card.find_element(By.CSS_SELECTOR, '.base-search-card__title')
@@ -446,6 +452,44 @@ class JobTrackingAgent:
                 self.logger.info("WebDriver closed")
         except Exception as e:
             self.logger.error(f"Error during cleanup: {e}")
+            
+    def scroll_till_bottom(self):
+        """Scroll to bottom and click 'Show more' button when available"""
+    
+        scroll_wait_time = 2
+        idle_scrolls = 0
+        last_height = self.driver.execute_script("return document.body.scrollHeight")
+    
+        while True:
+            # Scroll down slightly to trigger lazy UI behavior
+            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(scroll_wait_time)
+    
+            # Now try clicking the button (after scroll)
+            try:
+                show_more_btn = WebDriverWait(self.driver, 2).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, '.infinite-scroller__show-more-button'))
+                )
+    
+                if show_more_btn.is_displayed():
+                    #self.driver.execute_script("arguments[0].scrollIntoView(true);", show_more_btn)
+                    show_more_btn.click()
+                    time.sleep(3)
+    
+            except Exception as e:
+                print("No visible 'Show more jobs' button:", e)
+    
+            new_height = self.driver.execute_script("return document.body.scrollHeight")
+            if new_height == last_height:
+                idle_scrolls += 1
+                if idle_scrolls > 10:
+                    print("No new content loaded after several scrolls. Stopping.")
+                    break
+            else:
+                idle_scrolls = 0
+                
+            last_height = new_height
+
 
 def main():
     """Main entry point"""
