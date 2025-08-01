@@ -2,12 +2,12 @@
 {
   "search_parameters": {
     "keywords": [
-      "python developer",
-      "ML intern",
+       "junior python developer",
+      "junior machine learning engineer",
       "junior data scientist",
-      "quantitative intern"
+      "junior quantitative"
     ],
-    "location": "Remote",
+    "location": "Ireland",
     "experience_level": ["entry", "mid", "senior"],
     "job_type": ["full-time", "contract"],
     "exclude_keywords": ["senior", "lead", "manager", "director", "principal"]
@@ -53,6 +53,6 @@
   },
   "excel_file": "job_applications.xlsx",
   "schedule_time": "09:00",
-  "max_jobs_per_run": 20,
+  "max_jobs_per_run": 60,
   "delay_between_requests": 2
 }
