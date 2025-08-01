@@ -13,7 +13,7 @@
   },
   "portals": {
     "indeed": {
-      "enabled": true,
+      "enabled": false,
       "base_url": "https://indeed.com/jobs",
       "selectors": {
         "job_card": "[data-jk]",

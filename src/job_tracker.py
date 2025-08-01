@@ -1,6 +1,4 @@
 import pandas as pd
-import requests
-from bs4 import BeautifulSoup
 import time
 import schedule
 from datetime import datetime
@@ -15,11 +13,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from typing import List, Dict, Any
+from typing import List, Dict
 # Add the project root to the path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -149,14 +147,14 @@ class JobTrackingAgent:
                         df[col] = ''
                 self.logger.info(f"Loaded existing Excel file with {len(df)} records")
             else:
-                df = pd.DataFrame(columns=columns)
+                df = pd.DataFrame(columns=columns) #type: ignore
                 self.logger.info("Created new Excel file structure")
 
             return df
 
         except Exception as e:
             self.logger.error(f"Error loading Excel file: {e}")
-            return pd.DataFrame(columns=columns)
+            return pd.DataFrame(columns=columns) #type: ignore
 
     def scrape_indeed(self, keywords: str, location: str) -> List[Dict]:
         """Scrape job listings from Indeed"""
@@ -176,12 +174,13 @@ class JobTrackingAgent:
                     title_elem = card.find_element(By.CSS_SELECTOR, 'h2 a span')
                     company_elem = card.find_element(By.CSS_SELECTOR, '[data-testid="company-name"]')
                     link_elem = card.find_element(By.CSS_SELECTOR, 'h2 a')
-
+                    href = link_elem.get_attribute('href') or ''
+                
                     job = {
                         'title': title_elem.text.strip(),
                         'company': company_elem.text.strip(),
                         'location': location,
-                        'link': 'https://indeed.com' + link_elem.get_attribute('href'),
+                        'link': 'https://indeed.com' + href,
                         'portal': 'Indeed',
                         'date_found': datetime.now().strftime('%Y-%m-%d')
                     }
