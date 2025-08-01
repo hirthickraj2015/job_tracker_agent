@@ -2,3 +2,10 @@
 *.xlsx
 *.log
 chromedriver
+.DS_Store
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3

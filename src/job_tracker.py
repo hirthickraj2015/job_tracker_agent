@@ -208,9 +208,6 @@ class JobTrackingAgent:
             
             job_cards = self.driver.find_elements(By.CSS_SELECTOR, '.job-search-card')
             self.logger.info(f"Found {len(job_cards)} job cards on LinkedIn")
-            
-            with open('single_element.html', 'w') as f:
-                f.write(self.driver.page_source)
                 
             for i, card in enumerate(job_cards[:self.config.get('max_jobs_per_run', 20)]):
                 try:
