@@ -2,7 +2,9 @@
 {
   "search_parameters": {
     "keywords": [
-       "junior python developer"
+       "junior python developer",
+       "junior data scientist",
+       "junior machine learning enginner"
     ],
     "location": "Ireland",
     "experience_level": ["entry", "mid", "senior"],
