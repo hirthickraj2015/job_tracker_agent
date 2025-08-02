@@ -50,7 +50,7 @@
     "preferred_companies": [],
     "excluded_companies": ["staffing agency names"]
   },
-  "excel_file": "job_applications.xlsx",
+  "excel_file": "job_applications.csv",
   "schedule_time": "09:00",
   "max_jobs_per_run": 60,
   "delay_between_requests": 2

@@ -140,7 +140,20 @@ class JobTrackingAgent:
 
         try:
             if os.path.exists(self.excel_file):
-                df = pd.read_excel(self.excel_file)
+                
+                extension = os.path.splitext(self.excel_file)[1].lower()
+                
+                if extension == '.xlsx':
+                    df = pd.read_excel(self.excel_file)
+                elif extension == '.xls':
+                    df = pd.read_excel(self.excel_file, engine='xlrd')
+                elif extension == '.csv':
+                    df = pd.read_csv(self.excel_file)
+                elif extension == '.json':
+                    df = pd.read_json(self.excel_file)
+                else:
+                    raise ValueError(f"Unsupported file format: {extension}")
+                
                 # Add missing columns if they don't exist
                 for col in columns:
                     if col not in df.columns:
@@ -348,8 +361,18 @@ class JobTrackingAgent:
 
             # Ensure data directory exists
             os.makedirs(os.path.dirname(self.excel_file), exist_ok=True)
-
-            df.to_excel(self.excel_file, index=False)
+            
+            extension = os.path.splitext(self.excel_file)[1].lower()
+            
+            if extension == '.xlsx':
+                df.to_excel(self.excel_file, index=False)
+            elif extension == '.csv':
+                df.to_csv(self.excel_file, index=False)
+            elif extension == '.json':
+                df.to_json(self.excel_file, orient='records')
+            else:
+                raise ValueError(f"Unsupported file format: {extension}")
+            
             self.logger.info(f"Added {len(new_rows)} new jobs to {self.excel_file}")
         else:
             self.logger.info("No new jobs found")

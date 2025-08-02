@@ -1,5 +1,6 @@
 .venv
 *.xlsx
+*.csv
 *.log
 chromedriver
 .DS_Store
