@@ -20,7 +20,7 @@ df = pd.read_csv("data/job_applications.csv")
 df = df.loc[:, ~df.columns.str.contains("^Unnamed")]
 
 upload_data: dict[str, list[str]] = {
-    col: df[col].astype(str).tolist()      # ensure every cell is str
+    col: df[col].astype(str).tolist()
     for col in df.columns
 }
 
